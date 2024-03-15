@@ -1,0 +1,14 @@
+.wall {
+    width: 100vw; 
+    height: 100vh; 
+    background: linear-gradient(253deg, #F2C561 0%, #B47826 100%);     
+}
+.window {
+    width: 38vw; 
+    height: 29vw; 
+    margin-left: 31vw;
+    margin-right: 31vw;
+    margin-top: 35vh;
+    background: rgba(45.90, 45.90, 45.90, 0.80); 
+    border-radius: 10px;
+}
