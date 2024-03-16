@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File server</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style_main.css">
+    <!-- Место для указания метаинформации о странице, подключения стилей и других ресурсов -->
+</head>
+<body>
+        <header  class="main-header">
+            <img src="static/Logo.svg" class="main-logo" id="main-header-button-1">
+            <div class="main-header-button" id="main-header-button-fast_search">
+                <img src="static/Лупа.svg" id="main-header-button-2"/>
+                <input placeholder="Быстрый поиск">
+            </div>
+            <div class="main-header-button" id="get-konspekts">
+                <img src="static/Group.svg" id="main-header-button-3"/>
+                <p>Конспекты</p>
+            </div>
+            <button class="main-header-button" id="show-overlay-load-file">
+                <img src="static/Загрузка.svg" id="main-header-button-4"/>
+                <p>Загрузить</p>
+            </button>
+            <div class="main-header-button">
+                <p>@ О сайте</p>
+            </div>
+            <div class="main-header-button">
+                <img src="static/Профиль.svg" id="main-header-button-5  "/>
+            </div>
+        </header>
+        <div class="menu">
+            <h3>Фильтры</h3>
+            <hr>
+            <button>№ семестра</button>
+            <button>Дисциплина</button>
+            <button>Фио Преподавателя</button>
+            <button>Кафедра</button>
+            <a href="temp.html">перейти на доп страницу</a>
+        </div>
+        <div id="overlay-load-file">
+            <h3>Загрузите файл</h3>
+            <div class="overlay-load-file-grid">
+                <div>
+                    <div class="overlay-load-file-grid-left">
+                        <input>
+                        <h3>Заполните файл</h3>
+                        <div>
+                            <input placeholder="№Семестра" id="input-semester">
+                            <input placeholder="Преподаватель" id="input-teacher">
+                        </div>
+                        <div>
+                            <input placeholder="Дисциплина" id="input-discipline">
+                            <input placeholder="Кафедра" id="input-institute">
+                        </div>
+                        <button id="button-send-file">Сохранить</button>
+                    </div>
+                </div>
+                <div class="overlay-load-file-grid-right">
+                    <input type="file" id="input-file">Выберите файл</input>
+                    
+                </div>
+            </div>
+           
+        </div>
+        <main>
+            <!-- <iframe src="./menu.html"  width="250px" height="100%"></iframe> -->
+        </main>
+        <footer>
+        </footer>
+</body>
+</html>
+
+<script>
+    const url_server = "http://h9966908.beget.tech/txt_handler.php";
+
+    document.getElementById('show-overlay-load-file').addEventListener('click', function() {
+        let overlay = documentg.getElementById("overlay-load-file");
+        overlay.style.display = "block";
+    });
+
+    document.getElementById('get-konspekts').addEventListener('click', function() {
+    
+            fetch(url_server + "?get_lectures=true", {
+                method: 'GET',
+                mode: 'cors',
+                headers: {
+                    'Access-Control-Allow-Origin': '*', // Разрешаем доступ с любого источника
+                    'Content-Type': 'application/json' // Устанавливаем тип контента
+                  }
+            }).then(response => {
+                if (response.ok) {
+                    console.log('Файл успешно отправлен на сервер!');
+                } else {
+                    console.error('Ошибка при отправке файла на сервер.');
+                }
+            }).catch(error => {
+                console.error('Произошла ошибка:', error);
+            });
+    });
+
+    document.getElementById('button-send-file').addEventListener('click', function() {
+        const fileInput = document.getElementById('input-file');
+        const file = fileInput.files[0];
+
+        const inputSemester = document.getElementById('input-semester').value;
+        const inputTeacher = document.getElementById('input-teacher').value;
+        const inputDischipline = document.getElementById('input-discipline').value;
+        const inputInstitute = document.getElementById('input-institute').value;
+
+        // Создаем объект с данными для отправки (включая файл)
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('inputSemester', inputSemester);
+        formData.append('inputTeacher', inputTeacher);
+        formData.append('inputDischipline', inputDischipline);
+        formData.append('inputInstitute', inputInstitute);
+
+        fetch(url_server, {
+            method: 'POST',
+            body: formData
+        }).then(response => {
+            if (response.ok) {
+                console.log('Файл успешно отправлен на сервер!');
+            } else {
+                console.error('Ошибка при отправке файла на сервер.');
+            }
+        }).catch(error => {
+            console.error('Произошла ошибка:', error);
+    });
+    });
+</script>

@@ -1,0 +1,137 @@
+p, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    background-color: #141414;
+    color: white;
+}
+/*header*/
+.main-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5px 0;
+    background-color: #222222;
+}
+
+.main-header p{
+ font-size: 35px;
+}
+
+.main-header-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#main-header-button-1 {
+    width: 45px;
+    height: 80px;
+}
+
+#main-header-button-fast_search{
+    background-color: #333333;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+#main-header-button-fast_search input{
+    background-color: #333333;
+    outline: none;
+    border: none;
+    font-size: 35px;
+    color: aliceblue;
+}
+
+#main-header-button-2 {
+    width: 35px;
+    height: 40px;
+}
+
+#main-header-button-3 {
+    width: 45px;
+    height: 30px;
+}
+
+#main-header-button-4 {
+    width: 30px;
+    height: 30px;
+}
+
+#main-header-button-5 {
+    width: 70px;
+    height: 70px;
+}
+
+iframe {
+    border: none;
+}
+
+/*menu*/
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    background-color: #222222;
+    height: 100vh;
+    position: fixed;
+    width: 250px;
+    margin-top: 5px;
+    gap: 10px;
+}
+
+.menu button {
+    border: none;
+    background-color: #222222;
+    color: white;
+    text-align: left;
+    padding-left: 25px;
+    font-size: 20px;
+}
+
+.menu h3 {
+    font-size: 40px;
+    text-align: center;
+}
+
+.menu hr {
+    width: 200px;
+}
+
+#overlay-load-file {
+    position:absolute;
+    top: 150px;
+    left: 250px;
+    display: grid ;
+    background-color: #222222;
+    text-align: center;
+}   
+/* overlay */
+
+.overlay-load-file-grid {
+    display: grid;
+    grid-template-columns: 875px 500px;
+}
+
+.overlay-load-file-grid-left {
+
+}
+
+.overlay-load-file-grid-left input{
+
+}
+
+.overlay-load-file-grid-right{
+    display: flex;
+    flex-direction: column;
+}
+
+#overlay-load-file button {
+
+}
