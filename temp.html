@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <main class="login-container">
-        <button onclick="location.href='vk_auth.php'">Войти через VK</button>
-    </main>
-</body>
-
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <main class="login-container">
+            <button id="authorize_vk_Button">Войти через VK</button>
+            <button onclick="location.href='vk_respond.php'">подтяжка данных через VK</button>
+        </main>
+        <script>
+            document.getElementById("authorize_vk_Button").addEventListener("click", function() {
+                // Выполнение запроса на авторизацию с VK через AJAX
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", "vk_auth.php", true);
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var redirectUrl = xhr.responseText;
+                        // Открытие URL в новой вкладке
+                        window.open(redirectUrl, "_blank");
+                    }
+                };
+                xhr.send();
+            });
+        </script>
+    </body>
 </html>

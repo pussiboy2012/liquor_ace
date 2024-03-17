@@ -18,7 +18,7 @@
         $stmt->bindParam(':username', $username);
         $stmt->execute();
         $row = $stmt->fetch();
-        if ($username == $row['user_login'] && $password == $row['user_pass_hash']) {
+        if ($username === $row['user_login'] && $password === $row['user_pass_hash']) {
           // Верные логин и пароль
           session_start();
           $_SESSION['id_client'] = $row['id_client'];
@@ -34,3 +34,5 @@
           echo 'Неверный логин или пароль.';
       }
     }
+    
+?>

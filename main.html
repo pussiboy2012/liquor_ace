@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>File server</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/style_main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File server</title>
+    <link rel="stylesheet" href="css/style_for_mainpage.css">
     <!-- Место для указания метаинформации о странице, подключения стилей и других ресурсов -->
 </head>
-<body>
+<body id="body">
         <header  class="main-header">
-            <img src="static/Logo.svg" class="main-logo" id="main-header-button-1">
+            <img src="static/Выход на главную.svg" class="main-logo" id="main-header-button-1">
             <div class="main-header-button" id="main-header-button-fast_search">
                 <img src="static/Лупа.svg" id="main-header-button-2"/>
-                <input placeholder="Быстрый поиск">
+                <input placeholder="Быстрый поиск" id="input-search" list="searchlist-search">
+                <datalist id="searchlist_search"></datalist>
             </div>
             <div class="main-header-button" id="get-konspekts">
                 <img src="static/Group.svg" id="main-header-button-3"/>
@@ -22,92 +23,299 @@
                 <img src="static/Загрузка.svg" id="main-header-button-4"/>
                 <p>Загрузить</p>
             </button>
-            <div class="main-header-button">
-                <p>@ О сайте</p>
-            </div>
-            <div class="main-header-button">
+            <div class="main-header-button"  id="show-overlay-profile">
                 <img src="static/Профиль.svg" id="main-header-button-5  "/>
             </div>
         </header>
         <div class="menu">
             <h3>Фильтры</h3>
             <hr>
-            <button>№ семестра</button>
-            <button>Дисциплина</button>
-            <button>Фио Преподавателя</button>
-            <button>Кафедра</button>
-            <a href="temp.html">перейти на доп страницу</a>
+            <button id="filter-number-semecter">№ семестра</button>
+            <button id="filter-discipline">Дисциплина</button>
+            <button id="filter-fio">Фио Преподавателя</button>
+            <button id="filter-kafedra">Кафедра</button>
         </div>
-        <div id="overlay-load-file">
-            <h3>Загрузите файл</h3>
-            <div class="overlay-load-file-grid">
-                <div>
-                    <div class="overlay-load-file-grid-left">
-                        <input>
-                        <h3>Заполните файл</h3>
-                        <div>
-                            <input placeholder="№Семестра" id="input-semester">
-                            <input placeholder="Преподаватель" id="input-teacher">
+        <div id="overlay-base">
+            <div id="overlay-load-file">
+                <h2>Загрузите файл</h2>
+                <div class="overlay-load-file-grid">
+                    <div>
+                        <div class="overlay-load-file-grid-left">
+                            <input id="overlay-load-file-grid-left-1" placeholder="Введите название файла">
+                            <h2>Заполните файл</h2>
+                            <div class="overlay-load-file-grid-left-2">
+                                <input placeholder="№Семестра" id="input-semester" list = "searchList-semester">
+                                <datalist id="searchList-semester"></datalist>
+                                <input placeholder="Преподаватель" id="input-teacher" list = "searchList-teacher">
+                                <datalist id="searchList-teacher"></datalist>
+                            </div>
+                            <div class="overlay-load-file-grid-left-2">
+                                <input placeholder="Дисциплина" id="input-discipline" list = "searchList-discipline">
+                                <datalist id="searchList-discipline"></datalist>
+                                <input placeholder="Кафедра" id="input-institute" list="searchList-institute">
+                                <datalist id="searchList-institute"></datalist>
+                            </div>
+                            <button id="button-send-file">Сохранить</button>
                         </div>
-                        <div>
-                            <input placeholder="Дисциплина" id="input-discipline">
-                            <input placeholder="Кафедра" id="input-institute">
+                    </div>
+                    <div class="overlay-load-file-grid-right">
+                        <input type="file" id="input-file1">
+                        <div class="overlay-load-file-grid-right-1">Выберите файл</div>
+                        <div class="overlay-load-file-grid-right-2">
+                            <img src="static/plus.svg">
+                            Или перетащите сюда
                         </div>
-                        <button id="button-send-file">Сохранить</button>
+                        
+                        
                     </div>
                 </div>
-                <div class="overlay-load-file-grid-right">
-                    <input type="file" id="input-file">Выберите файл</input>
+            </div>
+        </div>
+        <div id="overlay-profile">
+            <div id="overlay-profile-content">
+                <h2>Профиль</h2>
+                <div class="overlay-profile-content-top">
+                    <button>login</button>
+                    <img src="static/Аватарка.png">
                     
                 </div>
+                <div class="overlay-profile-content-medium" id="overlay-profile-content-medium">
+                    <input type="text" class="overlay-profile-content-medium-input">
+                    <div  class="overlay-profile-content-medium-plates">
+                        <img src="static/Кнопка ЛК.png" href="http://lk.stu.lipetsk.ru/">
+                        <img src="static/Кнопка - ВК ID.png">
+                        <div  class="overlay-profile-content-medium-plates-2">
+                            <img src="static/Кнопка Изменить профиль.svg" id="redact_profile">
+                            <img src="static/Кнопка Админ Панель.png" id="admin_panel">
+                        </div>
+                        <img src="static/Кнопка Выйти из профиля.png">
+                    </div>
+                </div>
+                 <div id="overlay-profile-content-medium-redact">
+                    <input type="text" class="overlay-profile-content-medium-input" placeholder="Сменить почту">
+                    <input type="text" class="overlay-profile-content-medium-input" placeholder="Сменить пароль">
+                    <input type="text" class="overlay-profile-content-medium-input" placeholder="Сменить логин">
+                    <button class="overlay-profile-content-medium-button" id="return-to-medium">Сохранить изменения</button>
+                </div>
+                <div id="overlay-profile-content-medium-admin_panel">
+                    <input type="text" class="overlay-profile-content-medium-input" placeholder="Редактирование кафедр">
+                    <input type="text" class="overlay-profile-content-medium-input" placeholder="Редактирование преподавателей">
+                    <input type="text" class="overlay-profile-content-medium-input" placeholder="Редактирование дисциплин">
+                    <button class="overlay-profile-content-medium-button" id="return-to-medium2">Сохранить изменения</button>
+                </div>
+                </div>
             </div>
-           
-        </div>
         <main>
+            <div id="lecture-container"></div>
             <!-- <iframe src="./menu.html"  width="250px" height="100%"></iframe> -->
         </main>
         <footer>
+           
         </footer>
 </body>
 </html>
 
 <script>
-    const url_server = "http://h9966908.beget.tech/txt_handler.php";
+    const url_server = "https://lalectute.ru/txt_handler.php";
+
+function createLectures(lectures){
+        const container = document.getElementById('lecture-container');
+        container.style.display = "grid";
+        container.style.gridTemplateColumns = "1fr 1fr 1fr 1fr";
+        container.style.gap = "10px";
+        
+        lectures.forEach(lecture => {
+            // Создаем элемент div для каждой лекции
+            const div = document.createElement('div');
+            const img = document.createElement('img');
+            //img.src = 'static/folder.png';
+            img.src = "static/folder.svg";
+            img.style.width = "360px";
+            img.style.height = "450px";
+            div.style.gridTemplateColumns = "1fr 1fr 1fr 1fr";
+            // Создаем элементы p для каждого параметра лекции
+            const nameElement = document.createElement('p');
+            nameElement.textContent = `${lecture.name}${lecture.type_file}`;
+            div.style.position = 'relative';
+            nameElement.style.position = 'absolute';
+            nameElement.style.top = "250px"
+            nameElement.style.width = "320px"
+            nameElement.style.fontSize = "30px"
+            nameElement.style.left = "15px"
+            nameElement.style.color = "black";
+            // Добавляем элементы p внутрь div
+            div.appendChild(img);
+            div.appendChild(nameElement);
+            //div.appendChild(typeElement);
+            //div.appendChild(sourceElement);
+            // Добавляем div в контейнер
+            container.appendChild(div);
+        });
+    }
+
+    document.getElementById('return-to-medium').addEventListener('click', function() {
+        let overlay = document.getElementById("overlay-profile-content-medium");
+        overlay.style.display = "flex";
+        let overlay2 = document.getElementById("overlay-profile-content-medium-redact");
+        overlay2.style.display = "none";
+    });
+
+    document.getElementById('return-to-medium2').addEventListener('click', function() {
+        let overlay = document.getElementById("overlay-profile-content-medium");
+        overlay.style.display = "flex";
+        let overlay3 = document.getElementById("overlay-profile-content-medium-admin_panel");
+        overlay3.style.display = "none";
+    });
+
+    document.getElementById('redact_profile').addEventListener('click', function() {
+        let overlay = document.getElementById("overlay-profile-content-medium");
+        overlay.style.display = "none";
+        let overlay2 = document.getElementById("overlay-profile-content-medium-redact");
+        overlay2.style.display = "flex";
+        
+    });
+    
+    document.getElementById('admin_panel').addEventListener('click', function() {
+        let overlay = document.getElementById("overlay-profile-content-medium");
+        overlay.style.display = "none";
+        let overlay2 = document.getElementById("overlay-profile-content-medium-admin_panel");
+        overlay2.style.display = "flex";
+    });
 
     document.getElementById('show-overlay-load-file').addEventListener('click', function() {
-        let overlay = documentg.getElementById("overlay-load-file");
+        let overlay = document.getElementById("overlay-base");
         overlay.style.display = "block";
     });
 
-    document.getElementById('get-konspekts').addEventListener('click', function() {
-    
-            fetch(url_server + "?get_lectures=true", {
-                method: 'GET',
-                mode: 'cors',
-                headers: {
-                    'Access-Control-Allow-Origin': '*', // Разрешаем доступ с любого источника
-                    'Content-Type': 'application/json' // Устанавливаем тип контента
-                  }
-            }).then(response => {
-                if (response.ok) {
-                    console.log('Файл успешно отправлен на сервер!');
-                } else {
-                    console.error('Ошибка при отправке файла на сервер.');
-                }
-            }).catch(error => {
-                console.error('Произошла ошибка:', error);
-            });
+    document.getElementById("overlay-base").addEventListener('click', function() {
+        if (event.target === this) {
+            let overlay = document.getElementById("overlay-base");
+            overlay.style.display = "none";
+        }
+
     });
 
+    document.getElementById('show-overlay-profile').addEventListener('click', function() {
+        let overlay = document.getElementById("overlay-profile");
+        overlay.style.display = "block";
+    });
+
+    document.getElementById("overlay-profile").addEventListener('click', function() {
+        if (event.target === this) {
+            let overlay = document.getElementById("overlay-profile");
+            overlay.style.display = "none";
+        }
+
+    });
+
+
+    function convertHtmlToJson(htmlData) {
+        const htmlText = htmlData; // замените на ваш HTML-текст
+        const startToken = '[{"name":';
+        const endToken = '}]';
+        
+        const startIndex = htmlText.indexOf(startToken);
+        const endIndex = htmlText.lastIndexOf(endToken) + endToken.length;
+        
+        const jsonText = htmlText.substring(startIndex, endIndex);
+        const parsedData = JSON.parse(jsonText);
+        //console.log(parsedData);
+    
+        return parsedData;
+    }
+    
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch(url_server + "?get_lectures=true")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Произошла ошибка при получении данных с сервера');
+            }
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('text/html')) {
+                return response.text(); // Получаем текстовый ответ
+            } else {
+                throw new Error('Тип содержимого не является text/html');
+            }
+        })
+        .then(htmlData => {
+            // Здесь можно обработать текстовый ответ, например, преобразовав его в JSON
+            const jsonData = convertHtmlToJson(htmlData);
+            console.log('Данные получены:', jsonData);
+            createLectures(jsonData);
+        })
+        .catch(error => {
+            console.error('Произошла ошибка:', error);
+        });
+        console.log("Страница загружена!");
+    });
+
+    document.getElementById('get-konspekts').addEventListener('click', function() {
+
+        fetch(url_server + "?get_lectures=true")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Произошла ошибка при получении данных с сервера');
+            }
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('text/html')) {
+                return response.text(); // Получаем текстовый ответ
+            } else {
+                throw new Error('Тип содержимого не является text/html');
+            }
+        })
+        .then(htmlData => {
+            // Здесь можно обработать текстовый ответ, например, преобразовав его в JSON
+            const jsonData = convertHtmlToJson(htmlData);
+            console.log('Данные получены:', jsonData);
+            createLectures(jsonData);
+        })
+        .catch(error => {
+            console.error('Произошла ошибка:', error);
+        });
+
+    });
+
+    document.getElementById('filter-discipline').addEventListener('click', function() {
+        let overlay = document.getElementById("overlay-load-file");
+        overlay.style.display = "block";
+    });
+
+    document.getElementById('filter-fio').addEventListener('click', function() {
+        let overlay = document.getElementById("overlay-load-file");
+        overlay.style.display = "block";
+    });
+
+    document.getElementById('filter-kafedra').addEventListener('click', function() {
+        let overlay = document.getElementById("overlay-load-file");
+        overlay.style.display = "block";
+    });
+
+    function convertHtmlToJson2(htmlData) { // замените на ваш HTML-текст
+        const metaTagRegex = /<meta charset="UTF-8">/g;
+        return htmlData.replace(metaTagRegex, '');
+        //console.log(parsedData);
+    
+        return htmlData;
+    }
+
+
+    function stringToDictionary(inputString) {
+        const keyValuePairs = inputString.split(':').map(pair => pair.trim());
+        const dictionary = {
+            [keyValuePairs[0]]: keyValuePairs[1]
+        };
+        return dictionary;
+    }
+
     document.getElementById('button-send-file').addEventListener('click', function() {
-        const fileInput = document.getElementById('input-file');
+        const fileInput = document.getElementById('input-file1');
         const file = fileInput.files[0];
 
         const inputSemester = document.getElementById('input-semester').value;
         const inputTeacher = document.getElementById('input-teacher').value;
         const inputDischipline = document.getElementById('input-discipline').value;
         const inputInstitute = document.getElementById('input-institute').value;
-
+        const inputFileName = document.getElementById('overlay-load-file-grid-left-1').value;
         // Создаем объект с данными для отправки (включая файл)
         const formData = new FormData();
         formData.append('file', file);
@@ -115,18 +323,76 @@
         formData.append('inputTeacher', inputTeacher);
         formData.append('inputDischipline', inputDischipline);
         formData.append('inputInstitute', inputInstitute);
-
+        formData.append('FileName', inputFileName);
+        
         fetch(url_server, {
             method: 'POST',
             body: formData
         }).then(response => {
             if (response.ok) {
                 console.log('Файл успешно отправлен на сервер!');
+                ////
+                const contentType = response.headers.get('content-type');
+                if (contentType && contentType.includes('text/html')) {
+                    return response.text(); // Получаем текстовый ответ
+                } else {
+                    throw new Error('Тип содержимого не является text/html');
+                }
+                
             } else {
                 console.error('Ошибка при отправке файла на сервер.');
             }
+        }).then(htmlData => {
+            let overlay = document.getElementById("overlay-base");
+            overlay.style.display = "none";
+            // Здесь можно обработать текстовый ответ, например, преобразовав его в JSON
+            const jsonData = convertHtmlToJson2(htmlData);
+            dict = jsObject = JSON.parse(jsonData);
+            console.log(jsonData);
+            console.log(dict);
+            console.log(stringToDictionary[statusresponse]);
+            
+            if('{"statusresponse":"File successfully failed"}' == jsonData){
+                alert("Не верно введенные данные или файловая структура");
+                console.log("Не верно введенные данные или файловая структура");
+            }
+            if('{"statusresponse":"File successfully failed"}' == jsonData){
+                console.log("Не верно введенные данные или файловая структура");
+            }
         }).catch(error => {
             console.error('Произошла ошибка:', error);
+        });
     });
+    
+    
+    //володя это сделал Георгий, оно прикольное
+    function autocompleteSearch(searchInput, searchList) {
+    const input = document.getElementById(searchInput);
+    const datalist = document.getElementById(searchList);
+
+    input.addEventListener('input', function() {
+        let inputValue = input.value.trim();
+        if (inputValue.length > 0) {
+            fetch('autocomplete.php?field='+input.id + '&query=' + inputValue)
+                .then(response => response.json())
+                .then(data => {
+                    datalist.innerHTML = '';
+                    data.forEach(option => {
+                        const optionElement = document.createElement('option');
+                        optionElement.value = option;
+                        datalist.appendChild(optionElement);
+                    });
+                });
+        } else {
+            datalist.innerHTML = '';
+        }
     });
+}
+
+// Вызов функции autocompleteSearch с параметрами 'searchInput' и 'searchList'
+autocompleteSearch('input-semester', 'searchList-semester');
+autocompleteSearch('input-teacher', 'searchList-teacher');
+autocompleteSearch('input-discipline', 'searchList-discipline');
+autocompleteSearch('input-institute', 'searchList-institute');
+autocompleteSearch('input-search', 'searchlist-search');
 </script>
