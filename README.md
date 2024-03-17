@@ -1,2 +1,11 @@
-# liquor_ace
-some text
+# Lalectute
+
+## Descrtiption
+
+This online service...
+
+## Structure
+
+- Frontend
+- Backend
+- GPT model
